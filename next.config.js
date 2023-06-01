@@ -14,10 +14,6 @@ const ContentSecurityPolicy = `
   frame-src giscus.app youtube.com www.youtube.com facebook.com www.facebook.com;
 `;
 
-const nextConfig = {
-  basePath: '/portfolio',
-};
-
 const securityHeaders = [
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
   {
@@ -87,6 +83,10 @@ module.exports = withBundleAnalyzer({
         'react-dom': 'preact/compat',
       });
     }
+
+    const nextConfig = {
+      basePath: '/portfolio',
+    };
 
     return config;
   },
