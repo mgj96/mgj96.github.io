@@ -84,10 +84,15 @@ module.exports = withBundleAnalyzer({
       });
     }
 
-    const nextConfig = {
-      basePath: '/portfolio',
-    };
-
     return config;
   },
 });
+
+module.exports = {
+  'process.env.BACKEND_URL':
+    process.env.NODE_ENV === 'production' ? 'https://mgj96.github.io/portfolio' : '',
+  images: {
+    loader: 'imgix',
+    path: 'https://mgj96.github.io/portfolio',
+  },
+};
