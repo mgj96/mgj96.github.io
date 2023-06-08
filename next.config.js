@@ -52,8 +52,16 @@ const securityHeaders = [
   },
 ];
 
+const debug = process.env.NODE_ENV !== 'production';
+
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
+  assetPrefix: !process.env.NODE_ENV !== 'production' ? '/portfolio' : '',
+  trailingSlash: true, // 빌드 시 폴더 구조 그대로 생성하도록
+  images: {
+    loader: 'imgix',
+    path: !process.env.NODE_ENV !== 'production' ? 'https://mgj96.github.io/portfolio' : '',
+  },
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   eslint: {
     // Warning: This allows production builds to successfully complete even if
@@ -87,18 +95,3 @@ module.exports = withBundleAnalyzer({
     return config;
   },
 });
-
-const debug = process.env.NODE_ENV !== 'production';
-const repository = '/portfolio';
-
-const nextConfig = {
-  reactStrictMode: true,
-  assetPrefix: !debug ? `/${repository}/` : '', // production 일때 prefix 경로
-  trailingSlash: true, // 빌드 시 폴더 구조 그대로 생성하도록
-  images: {
-    loader: 'imgix',
-    path: process.env.NODE_ENV === 'production' ? 'https://mgj96.github.io/portfolio' : '',
-  },
-};
-
-module.exports = nextConfig;
